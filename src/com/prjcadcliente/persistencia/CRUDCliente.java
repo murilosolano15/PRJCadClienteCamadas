@@ -124,7 +124,45 @@ String msg = "";
 	}
 	
 	public String deletar(Cliente cliente) {
-		return null;
+String msg = "";
+		
+		//Criação dos objetos para a conexao com o banco de dados
+		try {
+			Class.forName("com.mysql.cj.jdbc.driver").newInstance(); // pega a pasta do driver de comunicação
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root",""); // entrar na porta, para realizar a conexao remota 
+			
+			String consulta = "DELETE FROM tbcliente WHERE id=?"; // pegar da tabela as coisas e trazer o resultado
+			
+			pst = con.prepareStatement(consulta);
+			
+			pst.setInt(1, cliente.getId());
+			
+			int r = pst.executeUpdate();
+			
+			
+			if(r > 0)
+				msg = "Deletado com sucesso!";
+			else
+				msg = "Não foi possivel Deletar!";
+				
+		}
+		//comandos de sql
+		catch(SQLException ex){
+			msg = "erro ao tentar Deletar:"+ex.getMessage();//mostrar qual é o erro 
+		}
+		
+		//erro geral
+		catch(Exception e) {
+			msg = "Erro inesperado: "+e.getMessage();
+		}
+		
+		//close critico 
+		finally {
+			try{con.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		
+		
+		return msg;
 	}
 	
 	public List<Cliente> PesquisarPorNome(String nome) {
