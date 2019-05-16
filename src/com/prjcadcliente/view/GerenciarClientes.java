@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.prjcadcliente.dominio.Cliente;
 import com.prjcadcliente.persistencia.CRUDCliente;
@@ -56,14 +57,14 @@ public class GerenciarClientes extends JFrame {
 		crud = new CRUDCliente();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 445, 445);
+		setBounds(100, 100, 477, 445);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(20, 39, 386, 20);
+		txtNome.setBounds(20, 39, 431, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
@@ -78,7 +79,7 @@ public class GerenciarClientes extends JFrame {
 		contentPane.add(lblEmail);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(20, 95, 386, 20);
+		txtEmail.setBounds(20, 95, 431, 20);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
@@ -93,7 +94,7 @@ public class GerenciarClientes extends JFrame {
 		txtTelefone.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnCadastrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -113,20 +114,20 @@ public class GerenciarClientes extends JFrame {
 				
 			}
 		});
-		btnCadastrar.setBounds(20, 247, 89, 20);
+		btnCadastrar.setBounds(20, 238, 101, 29);
 		contentPane.add(btnCadastrar);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnPesquisar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPesquisar.setBounds(119, 247, 89, 20);
+		btnPesquisar.setBounds(131, 238, 100, 29);
 		contentPane.add(btnPesquisar);
 		
 		JButton btnAtualizar = new JButton("Atualizar");
-		btnAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAtualizar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -153,11 +154,11 @@ public class GerenciarClientes extends JFrame {
 				
 			}
 		});
-		btnAtualizar.setBounds(218, 247, 89, 20);
+		btnAtualizar.setBounds(241, 238, 100, 29);
 		contentPane.add(btnAtualizar);
 		
 		JButton btnDeletar = new JButton("Deletar");
-		btnDeletar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnDeletar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -170,7 +171,7 @@ public class GerenciarClientes extends JFrame {
 			
 			}
 		});
-		btnDeletar.setBounds(317, 247, 89, 20);
+		btnDeletar.setBounds(351, 238, 100, 29);
 		contentPane.add(btnDeletar);
 		
 		JLabel lblIdade = new JLabel("Idade:");
@@ -184,10 +185,26 @@ public class GerenciarClientes extends JFrame {
 		txtIdade.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 278, 386, 117);
+		scrollPane.setBounds(20, 278, 431, 117);
 		contentPane.add(scrollPane);
 		
-		tbClienteCadastrado = new JTable();
+		String[] colunas = {"Id","Nome","E-mail","Telefone","Idade"};
+		
+		Object[][] dados = {
+				{15,"Rerto","roberto@gmail.com","1197718-7654",32},
+				{75,"Rorto","roberto@gmail.com","1197718-7654",12},
+				{65,"leto","roberto@gmail.com","1197718-7654",42},
+				{25,"Roberto","roberto@gmail.com","1197718-7654",82}
+				
+				
+		};
+		
+		
+		//Vamos construir o modelo de dados para exibir na tabela
+		DefaultTableModel modelo = new DefaultTableModel(dados,colunas);                                                                                                     
+		
+	
+		tbClienteCadastrado = new JTable(modelo);
 		scrollPane.setViewportView(tbClienteCadastrado);
 	}
 }
