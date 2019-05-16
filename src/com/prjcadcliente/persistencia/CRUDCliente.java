@@ -39,8 +39,8 @@ public class CRUDCliente {
 		
 		//Criação dos objetos para a conexao com o banco de dados
 		try {
-			Class.forName("com.mysql.cj.jdbc.driver").newInstance(); // pega a pasta do driver de comunicação
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root",""); // entrar na porta, para realizar a conexao remota 
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); // pega a pasta do driver de comunicação
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root",""); // entrar na porta, para realizar a conexao remota 
 			
 			String consulta = "INSERT INTO tbcliente(nome,email,telefone,idade)values(?,?,?,?)"; // pegar da tabela as coisas e trazer o resultado
 			
@@ -84,8 +84,8 @@ String msg = "";
 		
 		//Criação dos objetos para a conexao com o banco de dados
 		try {
-			Class.forName("com.mysql.cj.jdbc.driver").newInstance(); // pega a pasta do driver de comunicação
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root",""); // entrar na porta, para realizar a conexao remota 
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); // pega a pasta do driver de comunicação
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root",""); // entrar na porta, para realizar a conexao remota 
 			
 			String consulta = "UPDATE tbcliente SET nome=?,email=?,telefone=?,idade=? WHERE id=?"; // pegar da tabela as coisas e trazer o resultado
 			
@@ -130,8 +130,8 @@ String msg = "";
 		
 		//Criação dos objetos para a conexao com o banco de dados
 		try {
-			Class.forName("com.mysql.cj.jdbc.driver").newInstance(); // pega a pasta do driver de comunicação
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root",""); // entrar na porta, para realizar a conexao remota 
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); // pega a pasta do driver de comunicação
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root",""); // entrar na porta, para realizar a conexao remota 
 			
 			String consulta = "DELETE FROM tbcliente WHERE id=?"; // pegar da tabela as coisas e trazer o resultado
 			
@@ -176,7 +176,7 @@ String msg = "";
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			
 			//Chamar o gerenciado de driver
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root","");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root","");
 			
 			//Vamos criar a consulta para selecionar os cliente por nome 
 			String consulta = "select * from tbcliente where nome=?";
@@ -227,7 +227,7 @@ String msg = "";
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			
 			//Chamar o gerenciado de driver
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root","");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root","");
 			
 			//Vamos criar a consulta para selecionar os cliente por nome 
 			String consulta = "select * from tbcliente where id=?";
@@ -274,7 +274,7 @@ String msg = "";
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			
 			//Chamar o gerenciado de driver
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root","");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientedb?serverTimezone=UTC","root","");
 			
 			//Vamos criar a consulta para selecionar os cliente por nome 
 			String consulta = "select * from tbcliente";
