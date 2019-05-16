@@ -218,7 +218,51 @@ String msg = "";
 	}
 	
 	public Cliente PesquisarPorId(int id) {
-		return null;
+		
+		
+		Cliente cliente = new Cliente(); //array é um do lado do outro com"," lista é um embaixo do outro
+		
+		try {
+			//carregar o drive de comunicação com o banco de dados 
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			
+			//Chamar o gerenciado de driver
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root","");
+			
+			//Vamos criar a consulta para selecionar os cliente por nome 
+			String consulta = "select * from tbcliente where id=?";
+			
+			pst = con.prepareStatement(consulta);			
+			
+			pst.setInt(1, id);
+
+			//Vamos executar a consulta e guardar o resultado na variável rs 
+			rs = pst.executeQuery();
+			
+			/*
+			 * vamos pegar um cliente por vez que esta no rs e adicioná-lo a lista de clientes para, então retorná-la
+			 */
+			if(rs.next()) {
+				cliente.setId(rs.getInt(0));
+				cliente.setNome(rs.getString(1));
+				cliente.setEmail(rs.getString(2));
+				cliente.setTelefone(rs.getString(3));
+				cliente.setIdade(rs.getInt(4));
+			}
+			
+		}//fim do try
+		
+		catch(SQLException ex) {
+		ex.printStackTrace();	
+		}
+		catch(Exception e) {
+			e.printStackTrace();	
+		}
+		finally {
+			try {con.close();} catch(Exception e) {e.printStackTrace();}
+		}
+		
+		return cliente;
 	}
 	
 	public List<Cliente> PesquisarTodos() {
